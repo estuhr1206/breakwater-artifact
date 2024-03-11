@@ -24,6 +24,8 @@ for agent in AGENTS:
     agent_conn.connect(hostname = agent, username = USERNAME, pkey = k)
     agent_conns.append(agent_conn)
 
+cmd = "sudo rm -rf ~/{}".format(ARTIFACT_PATH)
+execute_remote([server_conn] + [client_conn] + agent_conns, cmd, True, False)
 # distributing code-base
 print("Distributing sources...")
 repo_name = (os.getcwd().split('/'))[-1]
